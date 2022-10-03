@@ -12,5 +12,7 @@ const Chat = () => {
 export default Chat
 
 const ChatContainer = styled.div`
-    color: red;
+    display: flex;
+    flex-direction: column;
+    flex: .65;
 `
