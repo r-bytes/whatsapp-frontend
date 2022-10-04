@@ -1,9 +1,10 @@
 import { Avatar, IconButton } from "@material-ui/core"
-import React from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components"
-import { AttachFile, MoreVert, Search } from "@material-ui/icons"
+import { AttachFile, InsertEmoticon, MicOutlined, MoreVert, Search } from "@material-ui/icons"
 
 const Chat = () => {
+    const [input, setInput] = useState([]);
     return (
         <ChatContainer>
             <ChatHeader>
@@ -43,6 +44,25 @@ const Chat = () => {
                     </ChatTimestamp>
                 </ChatReceiver>
             </ChatBody>
+
+            <ChatFooter>
+                <InsertEmoticon />
+                <MessageForm>
+                    <input
+                        type="text"
+                        value={input}
+                        placeholder={"Type a message"}
+                        onChange={(e) => setInput(e.target.value)}
+                    />
+                    <button
+                        type="submit"
+                        onClick={"sendMessage"}
+                    >
+                        Send Message
+                    </button>
+                </MessageForm>
+                <MicOutlined />
+            </ChatFooter>
         </ChatContainer>
     )
 }
@@ -111,4 +131,16 @@ const ChatTimestamp = styled.span`
 const ChatReceiver = styled(ChatMessage)`
     margin-left: auto;
     background-color: #dcf8c6;
+`
+
+const ChatFooter = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 62px;
+    border-top: 1px solid lightgray;
+`
+const MessageForm = styled.form`
+    flex: 1;
+    display: flex;
 `
