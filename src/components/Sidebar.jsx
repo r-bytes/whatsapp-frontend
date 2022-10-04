@@ -5,6 +5,7 @@ import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Avatar, IconButton } from "@material-ui/core";
 import SearchIcon from '@mui/icons-material/Search';
+import SidebarChat from "./SidebarChat"
 
 const Sidebar = (props) => {
     console.log(props)
@@ -36,6 +37,10 @@ const Sidebar = (props) => {
                     <input id="search" type="text" placeholder="Search or start new chat" style={{border: "none", outline: "0", width: "100%"}} />
                 </SidebarSearchContainer>
             </SidebarSearch>
+
+            <SidebarChats>
+                <SidebarChat />
+            </SidebarChats>
         </SidebarContainer>
     )
 }
@@ -82,4 +87,7 @@ const SidebarSearchContainer =  styled.div`
     width: 100%;
     height: 35px;
     border-radius: 20px;
+`
+const SidebarChats =  styled.div`
+
 `

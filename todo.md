@@ -1,8 +1,7 @@
-[] Frontend
 [] Sidebar Component
+[] Sidebar Chat Component
 [] Chat Component
 [] Login Component
-[] Backend
 [] Express
 [] Node.Js
 [] MongoDB
