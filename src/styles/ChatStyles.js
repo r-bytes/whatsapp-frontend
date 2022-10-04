@@ -70,8 +70,26 @@ export const ChatFooter = styled.div`
     align-items: center;
     height: 62px;
     border-top: 1px solid lightgray;
+
+    & .MuiSvgIcon-root {
+        padding: 10px;
+        color: gray;
+    }
+
 `
 export const MessageForm = styled.form`
     flex: 1;
     display: flex;
+
+    & input {
+        flex: 1;
+        border-radius: 30px;
+        padding: 10px;
+        border: none;
+        outline: none;
+    }
+
+    & button {
+        display: none;
+    }
 `
