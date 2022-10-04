@@ -5,6 +5,7 @@ import { ChatContainer, ChatHeader, ChatHeaderInfo, ChatHeaderRight, ChatBody, C
 
 const Chat = () => {
     const [input, setInput] = useState([]);
+    
     return (
         <ChatContainer>
             <ChatHeader>
@@ -56,7 +57,7 @@ const Chat = () => {
                     />
                     <button
                         type="submit"
-                        onClick={"sendMessage"}
+                        // onClick={"sendMessage"}
                     >
                         Send Message
                     </button>
