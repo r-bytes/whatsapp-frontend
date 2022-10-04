@@ -7,8 +7,7 @@ import { Avatar, IconButton } from "@material-ui/core";
 import SearchIcon from '@mui/icons-material/Search';
 import SidebarChat from "./SidebarChat"
 
-const Sidebar = (props) => {
-    console.log(props)
+const Sidebar = () => {
     return (
         <SidebarContainer>
             <SidebarHeader>
@@ -39,6 +38,8 @@ const Sidebar = (props) => {
             </SidebarSearch>
 
             <SidebarChats>
+                <SidebarChat />
+                <SidebarChat />
                 <SidebarChat />
             </SidebarChats>
         </SidebarContainer>
@@ -89,5 +90,7 @@ const SidebarSearchContainer =  styled.div`
     border-radius: 20px;
 `
 const SidebarChats =  styled.div`
-
+    flex: 1;
+    background-color: white;
+    overflow: scroll;
 `
