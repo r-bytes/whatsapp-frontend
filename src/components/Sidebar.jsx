@@ -15,7 +15,7 @@ const Sidebar = (props) => {
                     <Avatar src="/images/jedi.png" />
                 </SidebarHeaderLeft>
                 
-                <SidebarHeaderRight style={{border: "1px solid red"}}>
+                <SidebarHeaderRight>
                     <IconButton>
                         <DonutLargeIcon style={{margin: ".1vw", fontSize: "24px !important"}}/>
                     </IconButton>
@@ -46,23 +46,24 @@ const SidebarContainer =  styled.div`
     display: flex;
     flex-direction: column;
     flex: .35;
-
-    @media ${props => props.theme.breakpoints.lg} {
-        background-color: blue;
-    }
 `
 const SidebarHeader =  styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
     border-right: 1px solid lightgray;
     min-width: 10vw;
 
+    @media ${props => props.theme.breakpoints.md} {
+        display: flex;
+        flex-direction: row;
+    }
+
 `
 const SidebarHeaderRight =  styled.div`
-
-
+    display: flex;
 `
 const SidebarHeaderLeft =  styled.div`
 
@@ -73,8 +74,6 @@ const SidebarSearch =  styled.div`
     background-color: #f6f6f6;
     height: 40px;
     padding: 10px;
-
-
 `
 const SidebarSearchContainer =  styled.div`
     display: flex;
