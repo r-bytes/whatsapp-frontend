@@ -3,7 +3,7 @@ import { Avatar, IconButton } from "@material-ui/core"
 import { AttachFile, InsertEmoticon, MicOutlined, MoreVert, Search } from "@material-ui/icons"
 import { ChatContainer, ChatHeader, ChatHeaderInfo, ChatHeaderRight, ChatBody, ChatMessage, ChatName, ChatTimestamp, ChatReceiver, ChatFooter, MessageForm } from "../styles/ChatStyles"
 
-const Chat = () => {
+const Chat = ({messages}) => {
     const [input, setInput] = useState([]);
     
     return (
@@ -28,22 +28,33 @@ const Chat = () => {
             </ChatHeader>
 
             <ChatBody>
-                <ChatMessage>
-                        <ChatName> Ray </ChatName>
-                        This is a message
+                {messages.map((message, index) => (
+                    message.received === false ? (
+                        <ChatMessage key={index}>
+                            <ChatName>
+                                {message.name}
+                            </ChatName>
+                            {message.message}
                     
-                    <ChatTimestamp>
-                        {new Date().toUTCString()}
-                    </ChatTimestamp>
-                </ChatMessage>
-                <ChatReceiver>
-                        <ChatName> Elon </ChatName>
-                        This is a message
-                    
-                    <ChatTimestamp>
-                        {new Date().toUTCString()}
-                    </ChatTimestamp>
-                </ChatReceiver>
+                            <ChatTimestamp>
+                                {message.timestamp}
+                            </ChatTimestamp>
+                        </ChatMessage>
+                    ) :
+                    (
+                        <ChatReceiver key={index}>
+                            <ChatName>
+                                {message.name}
+                            </ChatName>
+                            {message.message}
+                        
+                            <ChatTimestamp>
+                                {message.timestamp}
+                            </ChatTimestamp>
+                        </ChatReceiver>
+                    )
+                )
+            )}
             </ChatBody>
 
             <ChatFooter>
