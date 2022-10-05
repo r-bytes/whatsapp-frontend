@@ -3,9 +3,11 @@
 [x] Chat Component
 [x] Styled Components
 [] Login Component
-[] Express
+[x] Express
+[x] Pusher
 [x] Spin up server and endpoints
-[] Node.Js
-[] MongoDB
+[x] Node.Js
+[x] MongoDB
+[x] Axios
 [] Firebase
 [] Authentication
