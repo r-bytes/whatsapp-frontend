@@ -4,6 +4,7 @@
 [x] Styled Components
 [] Login Component
 [] Express
+[x] Spin up server and endpoints
 [] Node.Js
 [] MongoDB
 [] Firebase
