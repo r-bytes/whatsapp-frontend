@@ -80,6 +80,7 @@ export const ChatFooter = styled.div`
 export const MessageForm = styled.form`
     flex: 1;
     display: flex;
+    outline-width: 0;
 
     & input {
         flex: 1;

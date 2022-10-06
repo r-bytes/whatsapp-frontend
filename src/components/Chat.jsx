@@ -2,9 +2,24 @@ import React, { useState } from 'react'
 import { Avatar, IconButton } from "@material-ui/core"
 import { AttachFile, InsertEmoticon, MicOutlined, MoreVert, Search } from "@material-ui/icons"
 import { ChatContainer, ChatHeader, ChatHeaderInfo, ChatHeaderRight, ChatBody, ChatMessage, ChatName, ChatTimestamp, ChatReceiver, ChatFooter, MessageForm } from "../styles/ChatStyles"
+import axios from "../axios.js"
 
 const Chat = ({messages}) => {
     const [input, setInput] = useState([]);
+
+    const sendMessage = async (e) => {
+        e.preventDefault()
+        
+        await axios.post("/api/v1/messages/new", {
+            "message": input,
+            "name": "Elon",
+            "timestamp": "2022-10-06",
+            "received": true
+        })
+
+        setInput("")
+
+    }
     
     return (
         <ChatContainer>
@@ -68,7 +83,7 @@ const Chat = ({messages}) => {
                     />
                     <button
                         type="submit"
-                        // onClick={"sendMessage"}
+                        onClick={sendMessage}
                     >
                         Send Message
                     </button>
