@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ChatIcon from '@mui/icons-material/Chat';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Avatar, IconButton } from "@material-ui/core";
 import SearchIcon from '@mui/icons-material/Search';
 import SidebarChat from "./SidebarChat"
+import axios from "../axios.js"
 import { SidebarContainer, SidebarHeader, SidebarHeaderRight, SidebarHeaderLeft, SidebarSearch, SidebarSearchContainer, SidebarChats } from "../styles/SidebarStyles"
 
 const Sidebar = () => {
+
+    useEffect(() => {
+
+        return () => {
+            
+        };
+    }, []);
+
     return (
         <SidebarContainer>
             <SidebarHeader>
@@ -39,7 +48,6 @@ const Sidebar = () => {
 
             <SidebarChats>
                 <SidebarChat addNewChat />
-                <SidebarChat />
                 <SidebarChat />
             </SidebarChats>
         </SidebarContainer>
