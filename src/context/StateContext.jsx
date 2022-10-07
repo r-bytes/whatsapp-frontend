@@ -21,7 +21,6 @@ export const StateContext = ({children}) => {
             setGroups(response.data)
         })
     }, []);
-
     
     useEffect(() => {
         const pusher = new Pusher('2dc9c34e35fd049b26e7', {
