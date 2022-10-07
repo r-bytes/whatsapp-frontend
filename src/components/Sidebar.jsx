@@ -38,7 +38,7 @@ const Sidebar = () => {
             </SidebarSearch>
 
             <SidebarChats>
-                <SidebarChat />
+                <SidebarChat addNewChat />
                 <SidebarChat />
                 <SidebarChat />
             </SidebarChats>
