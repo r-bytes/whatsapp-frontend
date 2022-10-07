@@ -5,15 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Theme from "./styles/theme";
 import { StateContext } from "./context/StateContext";
+import { BrowserRouter as Router } from "react-router-dom"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <StateContext>
-        <Theme>
-            <App />
-        </Theme>
-    </StateContext>
+    <Router>
+        <StateContext>
+            <Theme>
+                <App />
+            </Theme>
+        </StateContext>
+    </Router>
   </React.StrictMode>
 );
 

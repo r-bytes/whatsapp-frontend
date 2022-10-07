@@ -1,11 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Avatar, IconButton } from "@material-ui/core"
 import { AttachFile, InsertEmoticon, MicOutlined, MoreVert, Search } from "@material-ui/icons"
 import { ChatContainer, ChatHeader, ChatHeaderInfo, ChatHeaderRight, ChatBody, ChatMessage, ChatName, ChatTimestamp, ChatReceiver, ChatFooter, MessageForm } from "../styles/ChatStyles"
 import axios from "../axios.js"
+import { useParams } from "react-router-dom"
 
 const Chat = ({messages}) => {
     const [input, setInput] = useState([]);
+    const [groupName, setGroupName] = useState("");
+    const { groupId } = useParams()
+
+    useEffect(() => {
+        if (groupId) {
+            axios.get("/api/v1/groups/sync")
+              .then(response => {
+                // eslint-disable-next-line array-callback-return
+                response.data.map(res => {
+                    if (res._id === groupId) {
+                        setGroupName(res.name)
+                    }
+                })
+            })
+        }
+    }, [groupId]);
 
     const sendMessage = async (e) => {
         e.preventDefault()
@@ -16,9 +33,7 @@ const Chat = ({messages}) => {
             "timestamp": "2022-10-06",
             "received": true
         })
-
         setInput("")
-
     }
     
     return (
@@ -26,7 +41,7 @@ const Chat = ({messages}) => {
             <ChatHeader>
                 <Avatar src="/images/jedi.png" />
                 <ChatHeaderInfo>
-                    <h3> Group name </h3>
+                    <h3> {groupName} </h3>
                     <p> Last seen at... </p>
                 </ChatHeaderInfo>
                 <ChatHeaderRight>

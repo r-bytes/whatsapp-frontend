@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { SidebarChatContainer, SidebarChatInfo } from "../styles/SidebarChatStyles"
 import { useStateContext } from "../context/StateContext"
 import axios from "../axios.js"
+import { Link } from "react-router-dom"
 
 const SidebarChat = ({addNewChat}) => {
-    // const [seed, setSeed] = useState("")
     const { groups, setGroups } = useStateContext()
 
     const createChat = () => {
@@ -23,13 +23,15 @@ const SidebarChat = ({addNewChat}) => {
 
     return !addNewChat ? (
         groups.map(group => (
-            <SidebarChatContainer key={group._id}>
-                <Avatar src={`https://avatars.dicebear.com/api/human/${group.name}.svg`} />
-                <SidebarChatInfo>
-                    <h2> {group.name} </h2>
-                    <p> This is the last message </p>
-                </SidebarChatInfo>
-            </SidebarChatContainer>
+            <Link to={`/groups/${group._id}`} key={group._id}>
+                <SidebarChatContainer>
+                    <Avatar src={`https://avatars.dicebear.com/api/human/${group.name}.svg`} />
+                    <SidebarChatInfo>
+                        <h2> {group.name} </h2>
+                        <p> This is the last message </p>
+                    </SidebarChatInfo>
+                </SidebarChatContainer>
+            </Link>
         ))
     ) : (
         <SidebarChatContainer onClick={createChat}>
