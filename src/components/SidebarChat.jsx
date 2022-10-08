@@ -1,5 +1,5 @@
 import { Avatar } from "@material-ui/core"
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { SidebarChatContainer, SidebarChatInfo } from "../styles/SidebarChatStyles"
 import { useStateContext } from "../context/StateContext"
 import axios from "../axios.js"
