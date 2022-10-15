@@ -1,21 +1,15 @@
 import React from 'react';
 import styled from "styled-components";
-import { Button } from "@material-ui/core";
 import { auth, provider } from "../firebase";
 import { GoogleButton } from "react-google-button"
 import { UserAuth } from "../context/AuthContext";
 
 
 const Login = () => {
-    const { googleSignIn } = UserAuth()
+    const { signInWithGoogle } = UserAuth()
     
-    const signIn = async () => {
-        try {
-            await googleSignIn()
-
-        } catch (error) {
-            console.log(error)
-        }
+    const signIn = () => {
+        signInWithGoogle()
     }
 
     return (

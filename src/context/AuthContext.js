@@ -1,15 +1,21 @@
 import { useContext, createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase"
+import { auth, provider } from "../firebase"
 
 const AuthContext = createContext()
 
 export const AuthContextProvider = ({children}) => {
     const [user, setUser] = useState({});
 
-    const googleSignIn = () => {
-        const provider = new GoogleAuthProvider()
-        signInWithPopup(auth, provider)
+    const signInWithGoogle = async () => {
+        try {
+            const response = await signInWithPopup(auth, provider)
+            const { displayName, email } = response.user
+              console.log("name => ", displayName)
+              console.log("email => ", email)    
+        } catch (error) {
+            alert(error.message)
+        }
     }
 
     const logOut = () => {
@@ -29,11 +35,9 @@ export const AuthContextProvider = ({children}) => {
     return (
         <AuthContext.Provider
             value={{
-                googleSignIn,
-                signOut,
+                signInWithGoogle,
+                logOut,
                 user
-
-
         }}>
             {children}
         </AuthContext.Provider>
