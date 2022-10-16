@@ -4,7 +4,7 @@ import { auth, provider } from "../firebase"
 
 const AuthContext = createContext()
 
-export const AuthContextProvider = ({children}) => {
+export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
 
     const signInWithGoogle = async () => {
