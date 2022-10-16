@@ -1,12 +1,15 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import Pusher from "pusher-js"
 import axios from "../axios.js"
 
 const Context = createContext()
 
-export const StateContext = ({children}) => {
+export const StateProvider = ({ reducer, initialState, children }) => {
     const [messages, setMessages] = useState([])
     const [groups, setGroups] = useState([]);
+    const [user, setUser] = useState({
+        user: null
+    })
     
     useEffect(() => {
         axios.get("/api/v1/messages/sync")

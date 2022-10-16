@@ -1,7 +1,7 @@
 import { Avatar } from "@material-ui/core"
 import React from 'react'
 import { SidebarChatContainer, SidebarChatInfo } from "../styles/SidebarChatStyles"
-import { useStateContext } from "../context/StateContext"
+import { useStateContext } from "../context/StateProvider"
 import axios from "../axios.js"
 import { Link } from "react-router-dom"
 
