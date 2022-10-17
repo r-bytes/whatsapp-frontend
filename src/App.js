@@ -1,14 +1,14 @@
 // import { useEffect, useState } from "react";
 import { Chat, Sidebar, Login } from "./components";
 import { Wrapper, AppContainer } from "./styles/AppStyles"
-import { useStateContext } from "./context/StateProvider"
 import { Routes, Route } from "react-router-dom"
 import { useState } from "react";
+import { usePusherContext } from "./context/PusherProvider"
 import { AuthContextProvider } from "./context/AuthContext"
 import { BrowserRouter as Router } from "react-router-dom"
 
 function App() {
-    const { messages } = useStateContext()
+    const { messages } = usePusherContext()
     const [user, setUser] = useState("false");
 
     return (
@@ -19,7 +19,6 @@ function App() {
                 ) : (
                     <AppContainer>
                         <Router>
-
                             <Sidebar />
                             <Routes>
                                 <Route

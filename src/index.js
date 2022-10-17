@@ -4,18 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Theme from "./styles/theme";
+import { PusherProvider } from "./context/PusherProvider";
 import reducer, { initialState } from "./context/reducer";
-import { StateProvider } from "./context/StateProvider";
+import { ReduceProvider } from "./context/ReduceProvider";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <StateProvider initialState={initialState} reducer={reducer} >
-            <Theme>
-                <App />
-            </Theme>
-        </StateProvider>
+        <ReduceProvider initialState={initialState} reducer={reducer} >
+            <PusherProvider>
+                <Theme>
+                    <App />
+                </Theme>
+            </PusherProvider>
+        </ReduceProvider>
     </React.StrictMode>
 );
 

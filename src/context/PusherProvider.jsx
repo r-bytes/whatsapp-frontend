@@ -1,16 +1,14 @@
-import { createContext, useContext, useEffect, useReducer, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import Pusher from "pusher-js"
 import axios from "../axios.js"
 
 const Context = createContext()
 
-export const StateProvider = ({ reducer, initialState, children }) => {
+export const PusherProvider = ({ children }) => {
     const [messages, setMessages] = useState([])
     const [groups, setGroups] = useState([]);
-    const [user, setUser] = useState({
-        user: null
-    })
     
+    // get all messages
     useEffect(() => {
         axios.get("/api/v1/messages/sync")
           .then( response => {
@@ -18,6 +16,7 @@ export const StateProvider = ({ reducer, initialState, children }) => {
         })
     }, []);
 
+    // get all groups
     useEffect(() => {
         axios.get("/api/v1/groups/sync")
           .then(response => {
@@ -25,6 +24,7 @@ export const StateProvider = ({ reducer, initialState, children }) => {
         })
     }, []);
     
+    // trigger pusher for messages
     useEffect(() => {
         const pusher = new Pusher('2dc9c34e35fd049b26e7', {
             cluster: 'eu'
@@ -40,7 +40,8 @@ export const StateProvider = ({ reducer, initialState, children }) => {
             channel.unsubscribe()
         }
     }, [messages]);
-
+    
+    // trigger pusher for groups
     useEffect(() => {
         const pusher = new Pusher('2dc9c34e35fd049b26e7', {
             cluster: 'eu'
@@ -69,4 +70,4 @@ export const StateProvider = ({ reducer, initialState, children }) => {
     )
 }
 
-export const useStateContext = () => useContext(Context)
+export const usePusherContext = () => useContext(Context)

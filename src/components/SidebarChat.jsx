@@ -1,12 +1,12 @@
 import { Avatar } from "@material-ui/core"
 import React from 'react'
 import { SidebarChatContainer, SidebarChatInfo } from "../styles/SidebarChatStyles"
-import { useStateContext } from "../context/StateProvider"
+import { usePusherContext } from "../context/PusherProvider"
 import axios from "../axios.js"
 import { Link } from "react-router-dom"
 
 const SidebarChat = ({addNewChat}) => {
-    const { groups, setGroups } = useStateContext()
+    const { groups, setGroups } = usePusherContext()
 
     const createChat = () => {
         const groupName = prompt("Please enter a name for the chat")
