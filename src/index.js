@@ -6,19 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import Theme from "./styles/theme";
 import { PusherProvider } from "./context/PusherProvider";
 import reducer, { initialState } from "./context/reducer";
-import { ReduceProvider } from "./context/ReduceProvider";
+import { ReducerProvider } from "./context/ReducerProvider";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <ReduceProvider initialState={initialState} reducer={reducer} >
+        <ReducerProvider initialState={initialState} reducer={reducer} >
             <PusherProvider>
                 <Theme>
                     <App />
                 </Theme>
             </PusherProvider>
-        </ReduceProvider>
+        </ReducerProvider>
     </React.StrictMode>
 );
 

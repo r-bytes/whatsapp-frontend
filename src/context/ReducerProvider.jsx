@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer } from "react";
 
 export const Context = createContext()
 
-export const ReduceProvider = ({ reducer, initialState, children }) => {
+export const ReducerProvider = ({ reducer, initialState, children }) => {
     return (
         <Context.Provider value={
             useReducer(reducer, initialState)
@@ -12,4 +12,4 @@ export const ReduceProvider = ({ reducer, initialState, children }) => {
     )
 }
 
-export const useReduceContext = () => useContext(Context)
+export const useReducerContext = () => useContext(Context)

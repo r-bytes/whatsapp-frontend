@@ -1,16 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
-import { auth, provider } from "../firebase";
 import { GoogleButton } from "react-google-button"
 import { UserAuth } from "../context/AuthContext";
 
-
 const Login = () => {
     const { signInWithGoogle } = UserAuth()
-    
-    const signIn = () => {
-        signInWithGoogle()
-    }
 
     return (
         <LoginWrapper>
@@ -23,7 +17,7 @@ const Login = () => {
                     <h1> Sign in to WhatsApp </h1>
                 </LoginText>
                 <LoginButton
-                    onClick={signIn}
+                    onClick={signInWithGoogle}
                 >
                     Sign in with Google
                 </LoginButton>

@@ -6,13 +6,16 @@ import { Avatar, IconButton } from "@material-ui/core";
 import SearchIcon from '@mui/icons-material/Search';
 import SidebarChat from "./SidebarChat"
 import { SidebarContainer, SidebarHeader, SidebarHeaderRight, SidebarHeaderLeft, SidebarSearch, SidebarSearchContainer, SidebarChats } from "../styles/SidebarStyles"
+import { useReducerContext } from "../context/ReducerProvider"
 
 const Sidebar = () => {
+    const [{user}, dispatch] = useReducerContext()
+
     return (
         <SidebarContainer>
             <SidebarHeader>
                 <SidebarHeaderLeft>
-                    <Avatar src="/images/jedi.png" />
+                    <Avatar src={user?.photoURL} referrerPolicy="no-referrer" />
                 </SidebarHeaderLeft>
                 
                 <SidebarHeaderRight>

@@ -1,23 +1,29 @@
 import { useContext, createContext, useEffect, useState } from "react";
 import { signInWithPopup, signInWithRedirect, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth, provider } from "../firebase"
+import { useReducerContext } from "./ReducerProvider";
+import { actionTypes } from "./reducer";
 
 const AuthContext = createContext()
 
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState({});
+    const [{}, dispatch] = useReducerContext()
 
-    const signInWithGoogle = async () => {
+    const signInWithGoogle = () => {
         try {
-            const response = await signInWithPopup(auth, provider)
-            const { displayName, email } = response.user
-              console.log("name => ", displayName)
-              console.log("email => ", email)    
+            signInWithPopup(auth, provider).then(result => {
+                dispatch({
+                    type: actionTypes.SET_USER,
+                    user: result.user,
+                })
+            }).catch(error => {
+                alert(error.message)
+            })
         } catch (error) {
-            alert(error.message)
+            console.log("Error => ", error)
         }
     }
-
     const logOut = () => {
         signOut(auth)
     }
@@ -25,7 +31,6 @@ export const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
-            console.log(user)
         })
         return () => {
             unsubscribe()
