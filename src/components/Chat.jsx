@@ -4,6 +4,8 @@ import { AttachFile, InsertEmoticon, MicOutlined, MoreVert, Search } from "@mate
 import { ChatContainer, ChatHeader, ChatHeaderInfo, ChatHeaderRight, ChatBody, ChatMessage, ChatName, ChatTimestamp, ChatReceiver, ChatFooter, MessageForm } from "../styles/ChatStyles"
 import axios from "../axios.js"
 import { useParams } from "react-router-dom"
+import { collection, doc, onSnapshot } from "firebase/firestore"
+import { db } from "../firebase"
 
 const Chat = ({messages}) => {
     const [input, setInput] = useState([]);
@@ -12,15 +14,14 @@ const Chat = ({messages}) => {
 
     useEffect(() => {
         if (groupId) {
-            axios.get("/api/v1/groups/sync")
-              .then(response => {
-                // eslint-disable-next-line array-callback-return
-                response.data.map(res => {
-                    if (res._id === groupId) {
-                        setGroupName(res.name)
-                    }
-                })
+            onSnapshot(collection(db, "groups"), snapshot => {
+                // setGroupName(snapshot.data.name)
+                console.log(snapshot.docs)
             })
+    
+            // return () => {
+            //     unsubscribe()
+            // }
         }
     }, [groupId]);
 
