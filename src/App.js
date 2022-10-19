@@ -1,13 +1,12 @@
-// import { useEffect, useState } from "react";
 import { Chat, Sidebar, Login } from "./components";
 import { Wrapper, AppContainer } from "./styles/AppStyles"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { usePusherContext } from "./context/PusherProvider"
+import { useStateContext } from "./context/StateContext"
 import { AuthContextProvider } from "./context/AuthContext"
 import { useReducerContext } from "./context/ReducerProvider"
 
 function App() {
-    const { messages } = usePusherContext()
+    const { messages } = useStateContext()
     const [{user}, dispatch] = useReducerContext()
 
     return (
