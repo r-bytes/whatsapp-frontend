@@ -1,14 +1,14 @@
 import { Avatar } from "@material-ui/core"
 import React, { useEffect, useState } from 'react'
 import { SidebarChatContainer, SidebarChatInfo } from "../styles/SidebarChatStyles"
-import { usePusherContext } from "../context/PusherProvider"
+// import { usePusherContext } from "../context/PusherProvider"
 import { Link } from "react-router-dom"
 import { db } from "../firebase"
 import { collection, doc, getDocs, onSnapshot, setDoc } from "firebase/firestore";
 import { nanoid } from "nanoid"
 
 
-const SidebarChat = ({addNewChat}) => {
+const SidebarChat = ({ addNewChat }) => {
     const [groups, setGroups] = useState([]);
 
     useEffect(() => {
@@ -39,7 +39,7 @@ const SidebarChat = ({addNewChat}) => {
         groups.map(group => (
             <Link to={`/groups/${group.id}`} key={group.id}>
                 <SidebarChatContainer>
-                    <Avatar src={`https://avatars.dicebear.com/api/human/${group.name}.svg`} />
+                    <Avatar src={`https://avatars.dicebear.com/api/human/${group.id}.svg`} />
                     <SidebarChatInfo>
                         <h2> {group.data.name} </h2>
                         <p> last message... </p>

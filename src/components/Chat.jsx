@@ -4,24 +4,26 @@ import { AttachFile, InsertEmoticon, MicOutlined, MoreVert, Search } from "@mate
 import { ChatContainer, ChatHeader, ChatHeaderInfo, ChatHeaderRight, ChatBody, ChatMessage, ChatName, ChatTimestamp, ChatReceiver, ChatFooter, MessageForm } from "../styles/ChatStyles"
 import axios from "../axios.js"
 import { useParams } from "react-router-dom"
-import { collection, doc, onSnapshot } from "firebase/firestore"
+import { doc, onSnapshot } from "firebase/firestore"
 import { db } from "../firebase"
 
 const Chat = ({messages}) => {
     const [input, setInput] = useState([]);
     const [groupName, setGroupName] = useState("");
+    const [avatar, setAvatar] = useState("");
     const { groupId } = useParams()
 
     useEffect(() => {
         if (groupId) {
-            onSnapshot(collection(db, "groups"), snapshot => {
+            const unsubscribe = onSnapshot(doc(db, "groups", groupId), snapshot => {
                 // setGroupName(snapshot.data.name)
-                console.log(snapshot.docs)
+                setGroupName(snapshot?.data().name)
             })
+            setAvatar(`https://avatars.dicebear.com/api/human/${groupId}.svg`)
     
-            // return () => {
-            //     unsubscribe()
-            // }
+            return () => {
+                unsubscribe()
+            }
         }
     }, [groupId]);
 
@@ -40,7 +42,7 @@ const Chat = ({messages}) => {
     return (
         <ChatContainer>
             <ChatHeader>
-                <Avatar src="/images/jedi.png" />
+                <Avatar src={avatar} />
                 <ChatHeaderInfo>
                     <h3> {groupName} </h3>
                     <p> Last seen at... </p>
