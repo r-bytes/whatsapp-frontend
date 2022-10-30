@@ -8,8 +8,10 @@ import { collection, doc, getDocs, onSnapshot, setDoc } from "firebase/firestore
 import { nanoid } from "nanoid"
 
 
+
 const SidebarChat = ({ addNewChat }) => {
     const [groups, setGroups] = useState([]);
+    const [messages, setMessages] = useState([])
 
     useEffect(() => {
         const unsubscribe = onSnapshot(collection(db, "groups"), snapshot => {

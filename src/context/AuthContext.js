@@ -12,7 +12,8 @@ export const AuthContextProvider = ({ children }) => {
 
     const signInWithGoogle = () => {
         try {
-            signInWithPopup(auth, provider).then(result => {
+            signInWithPopup(auth, provider)
+              .then(result => {
                 dispatch({
                     type: actionTypes.SET_USER,
                     user: result.user,

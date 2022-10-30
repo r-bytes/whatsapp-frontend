@@ -15,7 +15,7 @@ const Sidebar = () => {
         <SidebarContainer>
             <SidebarHeader>
                 <SidebarHeaderLeft>
-                    <Avatar src={user?.photoURL} referrerPolicy="no-referrer" />
+                    <Avatar src={user.photoURL} referrerPolicy="noReferrer" />
                 </SidebarHeaderLeft>
                 
                 <SidebarHeaderRight>

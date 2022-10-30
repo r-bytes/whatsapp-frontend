@@ -12,7 +12,7 @@ function App() {
     return (
         <Wrapper>
             <AuthContextProvider>
-                {user ? (
+                {!user ? (
                     <Login />
                 ) : (
                     <AppContainer>
